@@ -1,0 +1,16 @@
+.todoItem {
+    border-radius: 10px;
+    width: 30%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    margin: 15px;
+    color: black;
+    background-color: whitesmoke;
+}
+
+.todoItem > span {
+    text-align: center;
+    width: 100%;
+    font-weight: bold;
+}
