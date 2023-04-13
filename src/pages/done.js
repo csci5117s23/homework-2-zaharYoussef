@@ -1,16 +1,14 @@
-import { useState } from "react"
-import { useRouter } from 'next/router';
 import TodoItem from "./components/todoItem";
 import Header from "./components/header"
 import SideBar from "./components/sideBar";
 import styles from '@/styles/todos.module.css';
 import { useAuth } from '@clerk/nextjs';
+import { useRouter } from 'next/router';
 
 
 export default function toDoPage() {
 
     const { isLoaded, userId, sessionId, getToken } = useAuth();
-    const [input, changeInput] = useState("");
     const router = useRouter();
 
 
@@ -18,15 +16,6 @@ export default function toDoPage() {
     if (!isLoaded || !userId) {
         router.push('/');
     }
-
-    const handleInputChange = (event) => {
-        changeInput(event.target.value);
-    }
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        changeInput("");
-    };
 
     return (
         <div>
@@ -36,15 +25,9 @@ export default function toDoPage() {
                     <SideBar></SideBar>
                 </div>
                 <div className={styles.taskSide}>
-                    <h1 className={styles.mainTitle}>My todo list</h1>
-                    <form onSubmit={handleSubmit}>
-                        <label>
-                            <input type="text" class={styles.addTaskBox} value={input} onChange={handleInputChange} />
-                        </label>
-                        <button type="submit">Add Task</button>
-                    </form>
+                    <h1 className={styles.mainTitle}>Done Tasks</h1>
                     <TodoItem 
-                    taskDescription="this is a very long description, I need to cut it lol" 
+                    taskDescription="this is a done task" 
                     taskCategory="category"></TodoItem>
                 </div>
             </div>

@@ -7,6 +7,15 @@
     font-size:large;
 }
 
+.cancel{
+  width: 15%;
+  height: 5vh;
+  background-color: #c51505;
+  color: antiquewhite;
+  font-weight: bolder;
+  font-size:large;
+}
+
 
 .appHeader {
   min-height: 100vh;

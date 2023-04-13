@@ -1,0 +1,24 @@
+.mainTitle{
+    color: azure;
+    margin-left: 3;
+}
+
+.contentDisplay{
+    display: flex;
+}
+
+.navSide {
+    width: 30%;
+}
+  
+.taskSide {
+    width: 70%;
+}
+
+.addTaskBox{
+    width: 50%;
+    margin-left: 20%;
+    margin-right: 3%;
+    height: 4vh;
+}
+

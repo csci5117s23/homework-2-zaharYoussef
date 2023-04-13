@@ -1,16 +1,41 @@
 .todoItem {
     border-radius: 10px;
-    width: 30%;
-    height: 200px;
+    width: 80%;
+    height: 10vh;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin: 15px;
+    margin-left: 10%;
+    padding: 10px;
     color: black;
-    background-color: whitesmoke;
+    border: 1px solid #ff0000;
+    /* background-color: whitesmoke; */
+    background-color: white;
 }
 
-.todoItem > span {
-    text-align: center;
-    width: 100%;
-    font-weight: bold;
+
+  
+.itemCheckbox {
+    width: 10%;
+    margin-right: 10px;
+    flex: right;
 }
+
+.itemDescription {
+    /* flex: 0 0 auto; */
+    width: 70%
+}
+
+.itemCategory {
+    /* flex: 0 0 auto; */
+    width: 20%
+}
+
+.itemLink {
+    /* flex: right;
+    margin-right: 2%; */
+    text-decoration: underline;
+    color: blue;
+}
+  
