@@ -1,0 +1,52 @@
+.taskHeader{
+    color: azure;
+    text-align: center;
+}
+
+.taskContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+  
+.taskHeader {
+    text-align: center;
+}
+
+.taskStatus {
+    color: azure;
+    width: 90%;
+    text-align: right;
+}
+
+.taskDone {
+    text-align: left;
+}
+
+.taskTextArea {
+    width: 100%;
+    height: min(50vh, 10em);
+    float: left;
+    padding: 1em;
+}
+
+.taskUpdateButton {
+    background-color: green;
+    color: white;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+    float: left;
+}
+
+.taskGoTodosButton {
+    width: 10%;
+    margin-left: 70%;
+    cursor: pointer;
+}
+
+.editTask{
+    width: 60%;
+    margin-left: 20%;
+}

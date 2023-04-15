@@ -1,23 +1,21 @@
-import { useState, useCallback, useEffect } from "react"
-import { useRouter } from 'next/router';
-import TodoItem from "./components/todoItem";
-import Header from "./components/header";
-import SideBar from "./components/sideBar";
-import AddTask from "./components/addTask";
-import styles from '@/styles/todos.module.css';
+import TodoItem from "../components/todoItem";
+import Header from "../components/header"
+import SideBar from "../components/sideBar";
+import AddTask from "../components/addTask";
+import styles from '../../styles/todos.module.css';
 import { useAuth } from '@clerk/nextjs';
-import { getTodosItems} from "../modules/data";
+import { useRouter } from 'next/router';
+import { useState, useCallback, useEffect } from "react"
+import { getTodosInCategory} from "../../modules/data";
 
 
 
-export default function toDoPage() {
-
-    const { isLoaded, userId, sessionId, getToken } = useAuth();
+export default function TodosCategoryPage() {
     const router = useRouter();
+    const { category } = router.query;
+    const { isLoaded, userId, sessionId, getToken } = useAuth();
     const [todosList, setTodosList] = useState([])
     const [loading, setLoading] = useState(true)
-
-
 
 
     //uncomment this for logout
@@ -25,33 +23,33 @@ export default function toDoPage() {
         router.push('/');
     }
 
+
     const fetchData = useCallback(async () => {
         const token = await getToken({ template: 'codehooks' })
-        const todos = await getTodosItems(token, userId)
+        const todos = await getTodosInCategory(token, userId, category)
 
         // update state -- configured earlier.
         setTodosList(todos);
         setLoading(false);
-        //console.log(todosList)
-      }, [getToken, userId, todosList])
+      }, [getToken, userId,category, todosList])
 
     useEffect(() => {
         async function firstLoad() {
             fetchData()
         }
         firstLoad()
-    }, [fetchData])
+    }, [category])
 
-    return (
-        <div>
-            <Header></Header>
-            <div className={styles.contentDisplay}>
+  return (
+    <div>
+        <Header></Header>
+        <div className={styles.contentDisplay}>
                 <div className={styles.navSide}>
                     <SideBar origin="todos"></SideBar>
                 </div>
                 <div className={styles.taskSide}>
-                    <h1 className={styles.mainTitle}>My todo list</h1>
-                    <AddTask category=""></AddTask>
+                    <h1 className={styles.mainTitle}>Todo tasks in {category}</h1>
+                    <AddTask category={category}></AddTask>
                     <span>
                         {todosList.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
                         .map((todo) => (
@@ -61,10 +59,10 @@ export default function toDoPage() {
                             taskCategory={todo.category}
                             taskId={todo._id}
                             taskStatus={todo.doneStatus}></TodoItem>
-                        ))}
-                    </span>                    
+                        ))}                        
+                    </span>
                 </div>
-            </div>
         </div>
-    );
+    </div>
+  );
 }

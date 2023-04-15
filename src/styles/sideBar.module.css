@@ -1,6 +1,7 @@
 .sideBarMain{
     background-color: rgb(42, 52, 255);
-    height: 100%;
+    /* height: 100%; */
+    min-height: 20vh;
     width: 80%;
     margin-top: 2%;
     margin-left: 5%;
