@@ -92,7 +92,7 @@ export const editTodoItem = async (authToken, todoId, newTodo) => {
 
 export const deleteCategory = async (authToken, categoryId) => {
     console.log(categoryId);
-    const result = await fetch(`${backend_base}/taskCategories/${categoryId}`, {
+    const result = await fetch(backend_base+"/taskCategories/"+categoryId, {
         'method': 'DELETE',
         'headers': {
             'Authorization': 'Bearer ' + authToken

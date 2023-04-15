@@ -16,5 +16,5 @@ https://startling-meringue-987859.netlify.app
 ## Challenge Task
 
 * I started the challenge task: yes
-* I completed the challenge task: [yes/no]
+* I completed the challenge task: yes
 
