@@ -17,10 +17,6 @@ export default function toDoPage() {
     const [todosList, setTodosList] = useState([])
     const [loading, setLoading] = useState(true)
 
-
-
-
-    //uncomment this for logout
     if (!isLoaded || !userId) {
         router.push('/');
     }
@@ -28,11 +24,8 @@ export default function toDoPage() {
     const fetchData = useCallback(async () => {
         const token = await getToken({ template: 'codehooks' })
         const todos = await getTodosItems(token, userId)
-
-        // update state -- configured earlier.
         setTodosList(todos);
         setLoading(false);
-        //console.log(todosList)
       }, [getToken, userId, todosList])
 
     useEffect(() => {

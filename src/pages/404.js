@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router'
+import styles from '@/styles/404.module.css';
+
 
 export default function NotFoundPage(){
   const router = useRouter()
@@ -9,9 +11,11 @@ export default function NotFoundPage(){
 
   return (
     <div>
-      <h1>404 - Page Not Found</h1>
-      <p>The page you're looking for doesn't exist.</p>
-      <button onClick={goToTodos}>Back to Todos</button>
+      <div className={styles.mainText}>
+        <h1>404 - Page Not Found</h1>
+        <p>What are you doing🤔</p>
+        <button onClick={goToTodos}>Back to Todos</button>
+      </div>
     </div>
   )
 }

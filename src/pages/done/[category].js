@@ -15,15 +15,12 @@ export default function DoneCategoryPage() {
   const [loading, setLoading] = useState(true)
 
 
-  //uncomment this for logout
   if (!isLoaded || !userId) {
     router.push('/');
   }
   const fetchData = useCallback(async () => {
       const token = await getToken({ template: 'codehooks' })
       const todos = await getDoneInCategory(token, userId, category)
-
-      // update state -- configured earlier.
       setTodosList(todos);
       setLoading(false);
     }, [getToken, userId,category, todosList])
@@ -45,16 +42,16 @@ export default function DoneCategoryPage() {
           <div className={styles.taskSide}>
               <h1 className={styles.mainTitle} >Done tasks in {category}</h1>
               <span>
-                        {todosList.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
-                        .map((todo) => (
-                            <TodoItem 
-                            key={todo._id}
-                            taskDescription={todo.description}
-                            taskCategory={todo.category}
-                            taskId={todo._id}
-                            taskStatus={todo.doneStatus}></TodoItem>
-                        ))}                        
-                    </span>
+                  {todosList.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn))
+                  .map((todo) => (
+                      <TodoItem 
+                      key={todo._id}
+                      taskDescription={todo.description}
+                      taskCategory={todo.category}
+                      taskId={todo._id}
+                      taskStatus={todo.doneStatus}></TodoItem>
+                  ))}                        
+              </span>
           </div>
       </div>
     </div>

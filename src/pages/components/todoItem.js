@@ -8,7 +8,7 @@ import { useAuth } from '@clerk/nextjs';
 
 export default function TodoItem({taskDescription, taskCategory, taskId, taskStatus}) {
     const [done, isDone] = useState(taskStatus);//state
-    const { isLoaded, userId, sessionId, getToken } = useAuth();
+    const { getToken } = useAuth();
 
 
     

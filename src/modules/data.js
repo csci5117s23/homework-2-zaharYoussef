@@ -1,7 +1,7 @@
 const backend_base = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
-
-// Get calls
+//Used class example Tech-Stack-2-Kluver-Demo as inspiration
+//************************** Get Calls***************************/
 export const getTodosItems = async (authToken, userId) => {
     const result = await fetch(backend_base+"/tasks?user="+userId+"&doneStatus=false", {
         'method':'GET',
@@ -50,15 +50,12 @@ export const getCategories = async (authToken, userId) => {
             'Authorization': 'Bearer ' + authToken
         }
     })
-    // const responseText = await result.text();
-    // console.log(responseText);
     return await result.json()
 }
 
 
-//Add Calls
+//************************** Add Calls***************************/
 export const addTodoItem = async (authToken, todoItem) => {
-    // console.log(todoItem)
     const result = await fetch(backend_base+"/tasks/", {
         'method':'POST',
         'headers': {'Authorization': 'Bearer ' + authToken,
@@ -81,7 +78,7 @@ export const addCategory = async (authToken, newCategory) => {
 }
 
 
-// Edit calls
+//************************** Edit Calls***************************/
 export const editTodoItem = async (authToken, todoId, newTodo) => {
     const result = await fetch(backend_base+"/tasks/"+todoId, {
         'method': 'PATCH',
@@ -91,4 +88,15 @@ export const editTodoItem = async (authToken, todoId, newTodo) => {
         },
         'body': JSON.stringify(newTodo)
     })
+}
+
+export const deleteCategory = async (authToken, categoryId) => {
+    console.log(categoryId);
+    const result = await fetch(`${backend_base}/taskCategories/${categoryId}`, {
+        'method': 'DELETE',
+        'headers': {
+            'Authorization': 'Bearer ' + authToken
+        },
+    })
+    return await result.json()
 }

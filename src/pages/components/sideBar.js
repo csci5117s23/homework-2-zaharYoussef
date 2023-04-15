@@ -4,7 +4,7 @@ import { useAuth } from "@clerk/nextjs";
 import CategoryLink from "./categoryLink";
 
 
-import { getCategories, addCategory, deleteCategory } from "../../modules/data";
+import { getCategories, addCategory } from "../../modules/data";
 
 
 export default function SideBar( {origin}) {
@@ -18,11 +18,9 @@ export default function SideBar( {origin}) {
     const fetchData = useCallback(async () => {
         const token = await getToken({ template: 'codehooks' })
         const categories = await getCategories(token, userId)
-
-        // update state -- configured earlier.
         setCategoryList(categories)
         setLoading(false);
-    }, [getToken, userId, loading])
+    }, [getToken, userId, loading, categoryList])
 
     useEffect(() => {
         async function firstLoad() {
@@ -37,7 +35,7 @@ export default function SideBar( {origin}) {
 
 
     async function addNewCategory(event)  {
-        event.preventDefault(); // prevent default form submission behavior
+        event.preventDefault();
         if (input!==""){
             const duplicate = categoryList.find((cat) => cat.category === input.trim());
             if (duplicate) {
@@ -66,7 +64,7 @@ export default function SideBar( {origin}) {
             </form>
             <span>
                 {categoryList.map((category) => (
-                    <CategoryLink key={category._id} origin={origin} category={category.category} ></CategoryLink>
+                    <CategoryLink key={category._id} origin={origin} idCategory={category._id} category={category.category} ></CategoryLink>
                 ))}
             </span>
         </nav>

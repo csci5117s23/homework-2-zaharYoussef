@@ -31,7 +31,7 @@ export default function Splash() {
     return (
         <header className={style.appHeader}>
             <h1>Welcome to your to-do list!</h1>
-            <p> add picture here 😁</p>
+            <p> ✍️😁 </p>
             {showSignin && <SignIn />}
             {showSignin ? 
                 (<button className={style.cancel} onClick={hideLogin}>Cancel</button>)

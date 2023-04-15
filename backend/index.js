@@ -25,6 +25,7 @@ const taskCategoriesSchema = object({
   category: string().required(),
 });
 
+//Took this from class example Tech-Stack-2-Kluver-Demo
 // This can largely be copy-pasted, it just grabs the authorization token and parses it, stashing it on the request.
 const userAuth = async (req, res, next) => {
   try {
@@ -41,17 +42,6 @@ const userAuth = async (req, res, next) => {
   } 
 }
 app.use(userAuth)
-
-// app.use('/categories', (req, res, next) => {
-//   if (req.method === "POST") {
-//       req.body.userId = req.user_token.sub
-//   } else if (req.method === "GET") {
-//       // on "index" -- always check for authentication.
-//       req.query.userId = req.user_token.sub
-//   }
-//   next();
-// })
-
 
 app.get('/', (req, res) => {
   res.send('say what')

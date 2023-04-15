@@ -3,7 +3,7 @@ import NotFoundPage from "../404";
 import styles from '../../styles/todoPage.module.css';
 import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
-import { useState, useCallback, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { getTodoItem, editTodoItem} from "../../modules/data";
 
 
@@ -28,9 +28,8 @@ export default function Task() {
         const fetchData = async () => {
           const token = await getToken({ template: 'codehooks' })
           const item = await getTodoItem(token, id)
-          console.log(item);
           setTask(item);
-          setTaskDescription(item.description); // set task description here
+          setTaskDescription(item.description);
           setLoading(false);
         }
         fetchData();
@@ -45,15 +44,16 @@ export default function Task() {
     async function setDone() {
         if (!done){
             const token = await getToken({ template: 'codehooks' })
-            editTodoItem(token, task.doneStatus, {doneStatus: !done})
+            editTodoItem(token, id, {doneStatus: !done})
             isDone(!done)
         }
     }
 
-  // Function to save updated task description
-    const saveTaskDescription = (event) => {
-        event.preventDefault()
-        console.log("Task description saved:", taskDescription)
+    async function saveTaskDescription(event){
+        const token = await getToken({ template: 'codehooks' })
+        console.log(taskDescription)
+        editTodoItem(token, id, {description: taskDescription})
+        isDone(!done)
     }
 
     return (

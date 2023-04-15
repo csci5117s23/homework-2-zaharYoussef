@@ -6,12 +6,10 @@ import { addTodoItem} from "../../modules/data";
 
 export default function AddTask({category}) {
     const [input, changeInput] = useState("");
-    const { isLoaded, userId, sessionId, getToken } = useAuth();
-
+    const {userId, getToken } = useAuth();
 
     async function addNewTodo(event) {
         event.preventDefault();
-        // changeInput("");
         const token = await getToken({ template: 'codehooks' })
         const todoItem = {
             user: userId,
